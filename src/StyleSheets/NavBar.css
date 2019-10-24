@@ -1,0 +1,154 @@
+#extended-nav{
+    padding: 0 30px;
+    background: #283e4a;
+    border-top: none;
+    box-shadow: none;
+    height: 52px;
+
+}
+
+.nav-main-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 44px;
+    width: 100%;
+    z-index: 100;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}  
+
+header {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+.nav-main__content {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.full-height {
+    height: 100%!important;
+}
+
+.display-flex {
+    display: flex!important;
+}
+
+.align-items-center {
+    align-items: center!important;
+}
+
+#bodyDiv {
+
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+#inbug-nav-item img {
+    /* display: inline-block; */
+    margin-bottom: 4px;    
+    margin-right: 6px;
+    height: 29px
+}
+
+#inbug-nav-item{
+    margin-left: 0px;
+    line-height: 50px;
+    display: inline-flex;
+    margin-top: 5px
+
+}
+
+#inbug-nav-item .search-global-typeahead__input{
+    height: 29px;
+    width: 150px
+}
+
+.nav-main {
+    align-items: flex-end;
+    background: none;
+    flex-shrink: 0;
+    height: 100%;
+    margin: 0 0 0 auto;
+    overflow: visible;
+    position: relative;
+    width: auto;
+    z-index: 100;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li{
+    margin-right: 15px
+}
+
+.nav-main .nav-item {
+    height: 45px;
+   
+}
+
+.nav-item__title {
+    font-size: 0.7rem;
+    line-height: 1.33333;
+    display: block;
+    color: #c7d1d8;
+    font-weight: 400;
+    transition: color .3s;
+}
+
+a i{
+    color: #c7d1d8;
+    text-decoration: none;
+    background-color: transparent;
+
+}
+
+#icons span i {
+ margin-left: 5px
+}
+
+#iconsNetwork span i {
+    margin-left: 20px
+   }
+
+
+   #iconsJobs span a {
+    margin-left: 3px
+   }
+   
+   #iconsMessaging span i {
+    margin-left: 16px
+   }
+
+   #iconsNotifications span i {
+    margin-left: 22px
+   }
+
+   #iconsProfile {
+    margin-bottom: 10px
+   }
+
+   .navImg{
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    background-clip: content-box;
+    border-width: 0px;
+    border-style: solid;
+    border-color: transparent;
+    border-image: initial;
+    border-radius: 49.9%;
+    border: solid 1px white !important;
+    margin-left: 5px;
+    /* margin-bottom: 2px */
+   }

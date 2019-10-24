@@ -1,0 +1,16 @@
+.loginCard{
+    width: 500px;
+    margin-left: 100px;
+    text-align: center;
+}
+
+#loginInput{
+    width: 450px;
+    border-radius: 2px;
+    border: 1px solid grey;
+    height: 35px
+}
+
+.loginAlert{
+    margin-top: 20px
+}

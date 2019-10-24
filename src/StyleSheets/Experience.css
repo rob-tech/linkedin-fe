@@ -1,0 +1,57 @@
+.experienceCont {
+    margin-top: 70px;
+    background-color: white;
+    box-shadow: 3px 3px 3px grey;
+    margin-bottom: 50px
+   }
+   
+   @media (min-width: 1200px) {
+     .experienceCont {
+       max-width: 800px;
+     }
+   } 
+   .experienceCard {
+    height: 200px;
+    /* box-shadow: 3px 3px 3px grey; */
+   }
+
+
+  #expUl li i {
+    color: #3399ff !important;
+
+  }
+  #expUl a {
+    margin-left: 550px
+  }
+
+  #expUl{
+    display: inline-block;
+    margin-top: 15px
+  }
+
+   #expImageTwo {
+    /* margin-left: 50px; */
+    height: 50px;
+    width: 50px
+  }
+
+  #experienceRow{
+    display: inline-flex;
+    margin-bottom: 15px
+  }
+  .expCol{
+    padding-top: 0px;
+    text-align: left;
+  }
+
+  .expCol h6{
+     font-weight: 300
+  }
+
+  .my-1{
+    padding-top: 0px;;
+    text-align: right;
+    margin-left:20px
+  }
+
+  

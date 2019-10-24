@@ -1,0 +1,164 @@
+.container-fluid {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  padding-top: 0px !important;
+
+}
+
+.feedCont {
+  margin-top: 80px;
+  padding-top: 0px;
+  padding-right: 0px;
+  background-color: #f2f2f2 !important;
+ 
+}
+
+@media (min-width: 1200px) {
+  .feedCont {
+    max-width: 1000px;
+  }
+}
+
+.feedLeftSect {
+  margin-top: 20px;
+  height: 250px;
+  width: 180px;
+  border: 1.5px solid #b0bec5;
+  margin-left: 50px;
+  border-radius: 2%;
+  box-shadow: 0px 1px 0px grey;
+  margin-left: 10px;
+  background-color: white;
+  
+}
+
+.feedCardImage {
+  width: 80px;
+  height: 80px;
+  box-sizing: border-box;
+  background-clip: content-box;
+  border-width: 0px;
+  border-style: solid;
+  border-color: transparent;
+  border-image: initial;
+  border-radius: 49.9%;
+  border: solid 3px white !important;
+  margin-top: 50px;
+}
+
+.profile-background-image--loading-feed {
+  background-size: 100%;
+  height: 50px;
+  background: cover;
+  background-repeat: no-repeat;
+  border-radius: 2%;
+}
+
+.photo {
+  margin-left: 47px;
+  text-align: left !important;
+  margin-top: -90px;
+}
+
+.t-23 {
+  font-size: 1rem;
+  line-height: 1.33333;
+  font-weight: 400;
+  margin-left: 5px;
+  margin-top: 0px;
+  font: bolder;
+}
+
+.t-17 {
+  font-size: 0.8rem;
+  line-height: 1.33333;
+  font-weight: 400;
+  margin-left: 5px;
+  margin-top: 2px;
+  color: grey;
+}
+
+.leftSideSect {
+  text-align: center;
+}
+
+.pb4 {
+  align-items: center;
+}
+
+.feedCard {
+  margin-top: 20px;
+  height: 100px;
+  width: 700px;
+  border: 1.5px solid #b0bec5;
+  margin-left: 55px;
+  border-radius: 2%;
+  box-shadow: 0px 1px 0px grey;
+}
+
+#feedrow {
+  display: inline-flexbox;
+  height: 200px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#feedLink i {
+  color: #b3bcc2 !important;
+  height: 40px;
+  margin-top: 20px;
+  padding-top: 0px;
+  margin-left: 5px;
+}
+
+#feedHr {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+@media (min-width: 576px) {
+  #writeInst {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+#writeInst {
+  border-right: 0.5px solid #b0bec5;
+  text-align: left;
+}
+
+#camInst {
+  border-right: 0.5px solid #b0bec5;
+  text-align: center;
+}
+
+#cameraLink i {
+  color: #b3bcc2 !important;
+  height: 40px;
+  margin-top: 20px;
+  padding-top: 0px;
+}
+
+#feedRow2 {
+  padding: 0px;
+  margin: 0px;
+  background-color: white;
+}
+
+#feedRow3 {
+  padding: 0px;
+  margin: 0px;
+}
+
+.feedCard2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 100px;
+  width: 700px;
+  border: 1.5px solid #b0bec5;
+  margin-left: 55px;
+  border-radius: 2%;
+  box-shadow: 0px 1px 0px grey;
+  background-color: white;
+}

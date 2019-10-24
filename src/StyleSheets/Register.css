@@ -1,0 +1,15 @@
+#registerInput{
+    width: 450px;
+    border-radius: 2px;
+    border: 1px solid grey;
+    height: 35px
+}
+
+.registerCard{
+    width: 500px;
+    margin-left: 100px
+}
+
+#registerLabel{
+    font-size: 20px
+}

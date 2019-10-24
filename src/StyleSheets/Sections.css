@@ -1,0 +1,144 @@
+.hpCont {
+ margin-top: 70px;
+ background-color: white;
+}
+
+@media (min-width: 1200px) {
+  .hpCont {
+    max-width: 800px;
+  }
+}
+
+.profile-background-image--loading {
+  background-size: 100%;
+  height: 200px;
+  background: cover;
+  background-repeat: no-repeat;
+}
+
+.sectCard {
+  height: 400px;
+  box-shadow: 3px 3px 3px grey;
+}
+
+.pb5 {
+  padding-bottom: 24px !important;
+}
+
+.ph5 {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+.display-flex {
+  display: flex !important;
+}
+.photo {
+  margin-top: -90px;
+}
+.text-align-left {
+  text-align: left !important;
+}
+
+.cardImage {
+  width: 160px;
+  height: 160px;
+  box-sizing: border-box;
+  background-clip: content-box;
+  border-width: 0px;
+  border-style: solid;
+  border-color: transparent;
+  border-image: initial;
+  border-radius: 49.9%;
+  border: solid 3px white !important;
+}
+
+.card {
+  height: 200px;
+  background-color: transparent !important;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: none;
+  border: none !important;
+  border-radius: 0.25rem;
+  margin-bottom: 200px;
+  margin-left: 50px;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.flex-1 {
+  flex: 1 !important;
+  margin-left: 40px;
+}
+
+.display-flex {
+  display: flex !important;
+  height: 50px;
+}
+
+.mt3,
+.mv3 {
+  margin-top: 12px !important;
+}
+
+.mb1 {
+  margin-bottom: 4px !important;
+}
+
+.justify-flex-end {
+  justify-content: flex-end !important;
+}
+
+/* bottom half of card */
+
+.mt2,
+.mv2 {
+  margin-top: 30px !important;
+}
+
+.break-words {
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+}
+.inline {
+  display: inline !important;
+}
+
+.t-24 {
+  font-size: 1.2rem;
+  line-height: 1.33333;
+  font-weight: 400;
+
+  margin-top: 0px;
+}
+
+.t-18 {
+  font-size: 0.9rem;
+  line-height: 1.33333;
+  font-weight: 400;
+ 
+  margin-top: 7px;
+}
+
+.experienceCol {
+  margin-top: 30px;
+}
+.experienceHeaders {
+  margin-left: 10px;
+}
+.expElement {
+  display: inline-flex;
+}
+
+.expElement #expImage {
+  margin-left: 130px;
+}
+
+
