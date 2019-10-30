@@ -3,7 +3,7 @@ export const handleProfiles = () => {
         var headers = new Headers({
             "Authorization": 'Basic dXNlcjc6M1VVNWRZRnZlblJ1UlA3RQ==',
         });
-        var response = await fetch("https://striveschool.herokuapp.com/api/profiles/user7", {
+        var response = await fetch("http://localhost:3000/profile/user7" , {
             method: "GET", headers: headers
         })
         if (response.ok) {

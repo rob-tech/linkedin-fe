@@ -19,13 +19,16 @@ class Main extends Component {
             user: {}
         }
     }
+
+ 
+
     render() {
         return (
             <Provider store={configureStore()}>
                 <Router>
                     <NavBar />
                     <Switch>
-                        <Route path="/profile" exact component={Sections} />
+                        <Route path="/profile/:username"  component={Sections} />
                         <Route path="/" render={props => (<Login {...props} />)} exact component={Login} />
                     </Switch>
                     <Route path="/feed" exact component={Feeds} />

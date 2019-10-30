@@ -9,10 +9,9 @@ class Login extends Component {
             token: null,
             username: "",
             password: "",
-            errMess: ""
+            errMess: ""       
         }
     }
-
 
     render() {
         return (
@@ -27,7 +26,7 @@ class Login extends Component {
                             <div className="form-group">
                                 <input id="loginInput" type="text" value={this.state.password} placeholder=" password" onChange={(val) => this.setState({ password: val.currentTarget.value })} />
                             </div>
-                            <button className="btn btn-primary btn-block" onClick={this.login}  value="login">Login</button>
+                            <button className="btn btn-primary btn-block" onClick={this.login} value="login">Login</button>
                             {this.state.errMess && (
                                 <Alert className="loginAlert" color="info">{this.state.errMess}</Alert>
                             )}
@@ -43,46 +42,42 @@ class Login extends Component {
 
     login = async () => {
 
-            var res = await fetch("http://localhost:3000/users/login", {
-                method: "POST",
-                body: JSON.stringify({
-                    username: this.state.username,
-                    password: this.state.password
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                }
+        var res = await fetch("http://localhost:3000/users/login", {
+            method: "POST",
+            body: JSON.stringify({
+                username: this.state.username,
+                password: this.state.password
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        if (res.ok) {
+            var tokenJson = await res.json()
+            this.setState({
+                user: tokenJson.user,
+                token: tokenJson.token,
+                username: "",
+                password: "",
+                errMess: "",
+   
             })
-            if (res.ok) {
-                var tokenJson = await res.json()
-                this.setState({
-                    user: tokenJson.user,
-                    token: tokenJson.token,
-                    username: "",
-                    password: "",
-                    errMess: "",
-                })
-       
-                localStorage.setItem("accessToken", tokenJson.token)
-                this.props.history.push("/profile")
-            }
-            else {
-                // var error = await res.json();
-                var custMess = "We do not have your details. Click on register below and become a member!"
-                this.setState({
-                    errMess: custMess,
-                })
-            }
 
-        // } catch (ex) {
-        //     var custMess = "We do not have your details. Click on register below and become a member!"
-        //     this.setState({
-        //         errMess: custMess,
-        //     });
-        // }
+            localStorage.setItem("accessToken", tokenJson.token)
 
+            this.props.history.push("/profile/" + tokenJson.user.username)
+            
+        }
+        else {
+            // var error = await res.json();
+            var custMess = "We do not have your details. Click on register below and become a member!"
+            this.setState({
+                errMess: custMess,
+            })
+        }
 
     }
+}
 
     // componentDidMount = async () => {
     //     var token = localStorage.getItem("accessToken")
@@ -107,6 +102,5 @@ class Login extends Component {
     //         }
     //     }
     // }
-}
 
 export default Login;

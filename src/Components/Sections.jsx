@@ -29,7 +29,6 @@ class Sections extends Component {
         super(props);
         this.state = {
             isOpen: false,
-            authOk : false
         };
 
         this.toggle = this.toggle.bind(this);
@@ -39,16 +38,14 @@ class Sections extends Component {
             isOpen: !this.state.isOpen
         });
     }
-    // setToken = (token) => {
-    //     this.setState({
-    //       token: token,
-    //       authOk: true
-    //     })
-    //   }
+
+ 
+
     render() {
         return (
             <>
-                {this.props.profile.userProfile && this.props.profile.userProfile.map(profile => (
+         
+                {this.props.user && this.props.user.map(profile => (
                     <>
                         <Container fluid className="hpCont">
                             <section className="sectCard">
@@ -115,42 +112,42 @@ class Sections extends Component {
                     <section className="experienceCard">
                         <ul id="expUl">
                             <li><h1 className="t-20">Experience</h1>
-                            <Link id="editLink"> <i class="fa fa-pencil" aria-hidden="true"></i></Link></li>
+                                <Link id="editLink"> <i class="fa fa-pencil" aria-hidden="true"></i></Link></li>
                         </ul>
-                       
-                               
+
+
                         {this.props.profile.userExperiences && this.props.profile.userExperiences.map(experience => (
                             <div key={experience._id}>
-                                 <Row className= "col-sm-12" id="experienceRow" >
-                               <Col sm="2" className="my-1" >
-                                     <img id="expImageTwo" src={experience.image}/>
-                                </Col>
-                                <Col sm="2" className="expCol">
-                                    <h6 className="expHeaders"><b>{experience.company}</b></h6>
-                                       <h6>{experience.startDate.substr(0,10)}</h6>
-                               </Col>
-                               </Row>
+                                <Row className="col-sm-12" id="experienceRow" >
+                                    <Col sm="2" className="my-1" >
+                                        <img id="expImageTwo" src={experience.image} />
+                                    </Col>
+                                    <Col sm="2" className="expCol">
+                                        <h6 className="expHeaders"><b>{experience.company}</b></h6>
+                                        <h6>{experience.startDate.substr(0, 10)}</h6>
+                                    </Col>
+                                </Row>
                             </div>
                         ))}
                     </section>
-                   <hr  style={{backgroundColor: "#f2f2f2", height: 0.2}}/>
+                    <hr style={{ backgroundColor: "#f2f2f2", height: 0.2 }} />
                     <section className="experienceCard">
                         <ul id="expUl">
                             <li><h1 className="t-20">Education</h1>
-                            <Link id="editLink"> <i class="fa fa-pencil" aria-hidden="true"></i></Link></li>
+                                <Link id="editLink"> <i class="fa fa-pencil" aria-hidden="true"></i></Link></li>
                         </ul>
-                
-                                 <Row className= "col-sm-12" id="experienceRow" >
-                               <Col sm="2" className="my-1" >
-                                     <img id="expImageTwo" src="http://www.logoground.com/uploads/z4110148Dummy.jpg"/>
-                                </Col>
-                                <Col sm="2" className="expCol">
-                                    <h6 className="expHeaders"><b>Strive School</b></h6>
-                                       <h6>2019-06-01</h6>
-                               </Col>
-                               </Row>
-                 
-                        </section>
+
+                        <Row className="col-sm-12" id="experienceRow" >
+                            <Col sm="2" className="my-1" >
+                                <img id="expImageTwo" src="http://www.logoground.com/uploads/z4110148Dummy.jpg" />
+                            </Col>
+                            <Col sm="2" className="expCol">
+                                <h6 className="expHeaders"><b>Strive School</b></h6>
+                                <h6>2019-06-01</h6>
+                            </Col>
+                        </Row>
+
+                    </section>
                 </Container>
             </>
 
@@ -158,48 +155,56 @@ class Sections extends Component {
     }
     componentDidMount = async () => {
         // var id = this.props.match.params.id;
-        await this.props.userThunk()
-        await this.props.experienceThunk()
-        console.log(this.props.profile.userProfile)
-        this.refreshToken()
+        // await this.props.userThunk()
+        // await this.props.experienceThunk()
+        // console.log(this.props.profile.userProfile)
+        console.log("hello")
+        await this.refreshToken()
 
+    }
+
+    getProfile = async () => {
+        var token = localStorage.getItem("accessToken");
+        console.log(token)
+    
+        if (token) {
+            var username = this.props.match.params.username;
+            var res = await fetch("http://localhost:3000/users/" + username, {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer" + token
+                },
+            })
+            if (res.ok) {
+                var user = await res.json();
+                console.log(user)
+            }
+        }
     }
 
     refreshToken = async () => {
-    var token = localStorage.getItem("accessToken");
-    if (token){
-      var res = await fetch("http://localhost:3000/users/refresh", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer" + token
-        },
-       
-      })
-      if (res.ok){
-          var tokenJson = await res.json();
-          localStorage.setItem("accessToken", tokenJson.token)
-          this.setState({
-            token: tokenJson.token,
-            authOk : true
-          })
-      }
-      else{
-          this.setState({
-          authOk : false
-        }) 
+        var token = localStorage.getItem("accessToken");
+        console.log(token)
+        if (token) {
+            var res = await fetch("http://localhost:3000/users/refresh", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer" + token
+                },
 
-        localStorage.removeItem("accessToken")
-      }
-    }
-    else{
-      this.setState({
-        authOk : false
-      })
+            })
+            if (res.ok) {
+                var tokenJson = await res.json();
+                localStorage.setItem("accessToken", tokenJson.token)
+            }
+      
+         // localStorage.removeItem("accessToken")
     }
   }
-
- 
-  
 }
+
+
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(Sections);
