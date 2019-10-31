@@ -17,7 +17,6 @@ class Login extends Component {
     render() {
         return (
             <>
-
                 <div className="row mt-5">
                     <div className="col-md-6 m-auto">
                         <div className="card card-body loginCard">
@@ -66,7 +65,8 @@ class Login extends Component {
             })
 
             localStorage.setItem("accessToken", tokenJson.token)
-           
+            console.log(tokenJson.user.username)
+            this.props.setUser(tokenJson.user.username, tokenJson.token)
             this.props.history.push("/profile/" + tokenJson.user.username)
             
         }

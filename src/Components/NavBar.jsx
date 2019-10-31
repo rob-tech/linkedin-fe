@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import image from "../Assets/download.png"
 import face from "../Assets/face.jpg"
 import { Link } from "react-router-dom"
+import Sections from "./Sections"
 
 class NavBar extends Component {
     state = {}
@@ -54,7 +55,7 @@ class NavBar extends Component {
                      </li>
 
                      <li id="feed-nav-item" className="nav-item nav-item--feed">
-                     <Link to= {"/profile/:username"} id="iconsProfile">
+                     <Link to= {"/profile/" + this.props.username} id="iconsProfile">
                      <img className="navImg" src={face}/>
                      <span className="nav-item__title">Profile</span>
                      </Link>

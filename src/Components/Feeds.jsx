@@ -24,8 +24,8 @@ const mapDispatchToProps = dispatch => ({
         dispatch({
             type: "ERR_MSG",
         }),
-    userThunk: () => dispatch(handleProfiles()),
-    userFeedThunk: () => dispatch(getFeeds()),
+    // userThunk: () => dispatch(handleProfiles()),
+    // userFeedThunk: () => dispatch(getFeeds()),
     postFeedThunk: (userText) => dispatch(postFeeds(userText)),
     // allProfilesThunk: () => dispatch(handleAllProfiles()),
 });
@@ -69,7 +69,7 @@ class Feeds extends Component {
             this.props.errMess(ex.message)
         }
 
-        var allFeeds = await this.props.userFeedThunk()
+        var allFeeds = await this.getFeeds()
         this.setState(
             {
                 messages: this.state.messages.concat(allFeeds)
@@ -196,15 +196,16 @@ class Feeds extends Component {
         );
     }
     componentDidMount = async () => {
-
-        await this.props.userThunk()
-        await this.props.userFeedThunk()
+       var token = this.props.token
+        // await this.props.userThunk()
+        // await this.props.userFeedThunk()
         await this.getProfile()
         await this.getFeeds()
         // await this.props.allProfilesThunk()
     }
 
     getFeeds = async () => {
+        // var token = this.props.token
         var token = localStorage.getItem("accessToken");
         console.log(token)
 
@@ -232,10 +233,10 @@ class Feeds extends Component {
 
         if (token) {
             var username = this.props.username
-            var res = await fetch("http://localhost:3000/users/Rob", {
+            var res = await fetch("http://localhost:3000/users/" + username, {
                 method: "GET",
                 headers: {
-                    "Authorization": "Bearer" + " " + token
+                    "Authorization": "Bearer " + token
                 },
             })
             if (res.ok) {

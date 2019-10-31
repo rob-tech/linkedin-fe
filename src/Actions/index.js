@@ -69,7 +69,7 @@ export const getFeeds = () => {
         var headers = new Headers({
             "Authorization": 'Basic dXNlcjc6M1VVNWRZRnZlblJ1UlA3RQ==',
         });
-        var response = await fetch("https://striveschool.herokuapp.com/api/posts/ ", {
+        var response = await fetch("http://localhost:3000/feeds ", {
             method: "GET", headers: headers
         })
         if (response.ok) {
@@ -89,13 +89,15 @@ export const getFeeds = () => {
 
 export const postFeeds = (message) => {
     return async (dispatch, getState) => {
-        var headers = new Headers({
-            "Authorization": 'Basic dXNlcjc6M1VVNWRZRnZlblJ1UlA3RQ==',
-            "Content-Type": "application/json"
-        });
-        var response = await fetch("https://striveschool.herokuapp.com/api/posts/ ", {
+        // var headers = new Headers({
+        //     "Authorization": 'Basic dXNlcjc6M1VVNWRZRnZlblJ1UlA3RQ==',
+        //     "Content-Type": "application/json"
+        // });
+        var token = localStorage.getItem("accessToken");
+        if(token){
+        var response = await fetch("http://localhost:3000/feeds ", {
             method: "POST", 
-            headers: headers, 
+            // headers: headers, 
             body: JSON.stringify({text: message})
 
         })
@@ -109,5 +111,6 @@ export const postFeeds = (message) => {
             payload: postFeeds
         });
     }
+}
 
 }

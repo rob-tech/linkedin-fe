@@ -16,23 +16,31 @@ class Main extends Component {
 
         this.state = {
             loggedInState: "not logged in",
-            user: {}
+            username: "",
+            token: null
         }
     }
 
- 
+
+    setUser = (username, token) => {
+        this.setState({
+            username: username,
+            token: token
+        })
+        this.refreshToken(token)
+    }
+
 
     render() {
         return (
             <Provider store={configureStore()}>
                 <Router>
-                    <NavBar />
+                    <NavBar username={this.state.username} />
                     <Switch>
                         <Route path="/profile/:username" component={Sections} />
-                        <Route path="/login" render={props => (<Login {...props} />)} exact component={Login} />
-                        <Route path="/feed" component={Feeds} />
+                        <Route path="/login" render={props => (<Login {...props} setUser={this.setUser} />)} />
+                        <Route path="/feed" render={props => (<Feeds {...props} username={this.state.username} token={this.state.token}/>)} />
                     </Switch>
-                
                     <Route path="/chat" exact component={Chat} />
                     <Route path="/register" exact component={Register} />
                 </Router>
@@ -40,6 +48,26 @@ class Main extends Component {
         );
     }
 
+
+    refreshToken = async (token) => {
+        // var token = localStorage.getItem("accessToken");
+        if (token) {
+            var res = await fetch("http://localhost:3000/users/refresh", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                },
+            })
+            if (res.ok) {
+                var tokenJson = await res.json();
+                localStorage.setItem("accessToken", tokenJson.token)
+
+            }
+
+            // localStorage.removeItem("accessToken")
+        }
+    }
 }
 
 export default Main;

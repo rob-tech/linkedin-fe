@@ -47,9 +47,11 @@ class Sections extends Component {
     render() {
         return (
             <>
-
+  
                 {this.state.user &&  (
-                    <>                
+                    <>
+                     {/* <Feeds username = {this.state.user.username}/> */}
+                           
                         <Container fluid className="hpCont">
                             <section className="sectCard">
                                 <div className="profile-background-image profile-background-image--loading ember-view" style={{ backgroundImage: `url(${image})` }}>   </div>
@@ -107,7 +109,7 @@ class Sections extends Component {
                                 <p>{this.state.user.bio}</p>
                             </section>
                         </Container>
-                    </>
+              </>
                 )}
 
 
@@ -157,7 +159,6 @@ class Sections extends Component {
         );
     }
     componentDidMount = async () => {
-        await this.refreshToken()
         await this.getProfile()
     }
 
@@ -184,25 +185,25 @@ class Sections extends Component {
         }
     }
 
-    refreshToken = async () => {
-        var token = localStorage.getItem("accessToken");
-        console.log(token)
-        if (token) {
-            var res = await fetch("http://localhost:3000/users/refresh", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer" + " " + token
-                },
-            })
-            if (res.ok) {
-                var tokenJson = await res.json();
-                localStorage.setItem("accessToken", tokenJson.token)
-            }
+    // refreshToken = async () => {
+    //     var token = localStorage.getItem("accessToken");
+    //     console.log(token)
+    //     if (token) {
+    //         var res = await fetch("http://localhost:3000/users/refresh", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 "Authorization": "Bearer" + " " + token
+    //             },
+    //         })
+    //         if (res.ok) {
+    //             var tokenJson = await res.json();
+    //             localStorage.setItem("accessToken", tokenJson.token)
+    //         }
 
-            // localStorage.removeItem("accessToken")
-        }
-    }
+    //         // localStorage.removeItem("accessToken")
+    //     }
+    // }
 }
 
 
