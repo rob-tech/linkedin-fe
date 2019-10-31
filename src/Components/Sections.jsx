@@ -13,6 +13,7 @@ import {
 import { Link } from "react-router-dom"
 import image from "../Assets/welcome1.jpg"
 import face from "../Assets/face.jpg"
+import Feeds from "../Components/Feeds"
 import { connect } from "react-redux";
 import { handleProfiles } from "../Actions";
 import { handleExperience } from "../Actions";
@@ -29,24 +30,26 @@ class Sections extends Component {
         super(props);
         this.state = {
             isOpen: false,
+            user: null
         };
 
         this.toggle = this.toggle.bind(this);
     }
+    
     toggle = () => {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
 
- 
+
 
     render() {
         return (
             <>
-         
-                {this.props.user && this.props.user.map(profile => (
-                    <>
+
+                {this.state.user &&  (
+                    <>                
                         <Container fluid className="hpCont">
                             <section className="sectCard">
                                 <div className="profile-background-image profile-background-image--loading ember-view" style={{ backgroundImage: `url(${image})` }}>   </div>
@@ -79,9 +82,9 @@ class Sections extends Component {
                                         <Col sm="6">
                                             <div className="display-flex mt2">
                                                 <div className="flex-1 mr5">
-                                                    <h2 className="inline t-24 t-black t-normal break-words">{profile.name} {profile.surname}</h2>
-                                                    <h4 className="mt1 t-18 t-black t-normal">{profile.title}</h4>
-                                                    <h6 className="mt1 t-18 t-black t-normal">{profile.area}</h6>
+                                                    <h2 className="inline t-24 t-black t-normal break-words">{this.state.user.name} {this.state.user.surname}</h2>
+                                                    <h4 className="mt1 t-18 t-black t-normal">{this.state.user.title}</h4>
+                                                    <h6 className="mt1 t-18 t-black t-normal">{this.state.user.area}</h6>
                                                 </div>
                                             </div>
                                         </Col>
@@ -101,11 +104,11 @@ class Sections extends Component {
                                     <li><h1 className="t-20">About</h1>
                                         <Link id="editLink"><i class="fa fa-pencil" aria-hidden="true"></i></Link></li>
                                 </ul>
-                                <p>{profile.bio}</p>
+                                <p>{this.state.user.bio}</p>
                             </section>
                         </Container>
                     </>
-                ))}
+                )}
 
 
                 <Container fluid className="experienceCont">
@@ -154,31 +157,30 @@ class Sections extends Component {
         );
     }
     componentDidMount = async () => {
-        // var id = this.props.match.params.id;
-        // await this.props.userThunk()
-        // await this.props.experienceThunk()
-        // console.log(this.props.profile.userProfile)
-        console.log("hello")
         await this.refreshToken()
-
+        await this.getProfile()
     }
 
     getProfile = async () => {
         var token = localStorage.getItem("accessToken");
         console.log(token)
-    
+
         if (token) {
             var username = this.props.match.params.username;
             var res = await fetch("http://localhost:3000/users/" + username, {
                 method: "GET",
                 headers: {
-                    "Authorization": "Bearer" + token
+                    "Authorization": "Bearer" + " " + token
                 },
             })
             if (res.ok) {
-                var user = await res.json();
-                console.log(user)
-            }
+                var profile = await res.json();
+            
+            this.setState({
+                user: profile
+            })
+
+        }
         }
     }
 
@@ -190,18 +192,17 @@ class Sections extends Component {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer" + token
+                    "Authorization": "Bearer" + " " + token
                 },
-
             })
             if (res.ok) {
                 var tokenJson = await res.json();
                 localStorage.setItem("accessToken", tokenJson.token)
             }
-      
-         // localStorage.removeItem("accessToken")
+
+            // localStorage.removeItem("accessToken")
+        }
     }
-  }
 }
 
 

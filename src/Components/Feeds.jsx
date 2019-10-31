@@ -36,7 +36,9 @@ class Feeds extends Component {
         this.state = {
             defaultModal: false,
             userText: "",
-            messages: []
+            messages: "",
+            feeds: [],
+            user: null
 
         };
     }
@@ -79,9 +81,9 @@ class Feeds extends Component {
         console.log(this.state.text)
         return (
             <>
-                {this.props.profile.userProfile && this.props.profile.userProfile.map(profile => (
+                {this.state.user &&  (
                     <>
-                        <div key={profile._id}>
+                        <div key={this.state.user._id}>
                             <Container fluid className="feedCont">
                                 <Row id="feedrow" className="col-12 ">
                                     <Col className="col-2 sideSect">
@@ -97,8 +99,8 @@ class Feeds extends Component {
                                                 </div>
 
                                                 <div className="leftSideSect">
-                                                    <h2 className="inline t-23 t-black t-normal break-words">{profile.name} {profile.surname}</h2>
-                                                    <h4 className="mt1 t-17 t-black t-normal">{profile.title}</h4>
+                                                    <h2 className="inline t-23 t-black t-normal break-words">{this.state.user.name} {this.state.user.surname}</h2>
+                                                    <h4 className="mt1 t-17 t-black t-normal">{this.state.user.title}</h4>
                                                 </div>
 
                                             </div>
@@ -162,7 +164,7 @@ class Feeds extends Component {
                                         </section>
                                         <Scrollbars style={{ height: 500 }}>
                                      
-                                        {this.props.feeds.userFeeds && this.props.feeds.userFeeds.map(feeds => {
+                                        {this.state.feeds && this.state.feeds.map(feeds => {
                                             return (
                                                 <div key={feeds._id}>
                                                     <section className="feedCard2">
@@ -187,7 +189,7 @@ class Feeds extends Component {
                         </div>
                     </>
 
-                ))}
+                )}
 
             </>
 
@@ -197,8 +199,54 @@ class Feeds extends Component {
 
         await this.props.userThunk()
         await this.props.userFeedThunk()
-        await this.props.postFeedThunk()
+        await this.getProfile()
+        await this.getFeeds()
         // await this.props.allProfilesThunk()
+    }
+
+    getFeeds = async () => {
+        var token = localStorage.getItem("accessToken");
+        console.log(token)
+
+        if (token) {
+            var res = await fetch("http://localhost:3000/feeds", {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + token
+                },
+            })
+            if (res.ok) {
+                var posts = await res.json();
+            
+            this.setState({
+                feeds: posts
+            })
+
+        }
+        }
+    }
+
+    getProfile = async () => {
+        var token = localStorage.getItem("accessToken");
+        console.log(token)
+
+        if (token) {
+            var username = this.props.username
+            var res = await fetch("http://localhost:3000/users/Rob", {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer" + " " + token
+                },
+            })
+            if (res.ok) {
+                var profile = await res.json();
+            
+            this.setState({
+                user: profile
+            })
+
+        }
+        }
     }
 
 }

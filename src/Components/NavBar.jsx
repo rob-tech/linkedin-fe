@@ -19,10 +19,10 @@ class NavBar extends Component {
                     </div>
                     <ul className="nav-main nav-container display-flex full-height">
                      <li id="feed-nav-item" className="nav-item nav-item--feed">
-                     <a id="icons" href="/feed">
+                     <Link to={"/feed"} id="icons">
                      <span><i className="fa fa-home fa-lg" aria-hidden="true"></i></span>
                      <span className="nav-item__title">Home</span>
-                     </a>
+                     </Link>
                      </li>
 
                      <li id="feed-nav-item" className="nav-item nav-item--feed">
@@ -54,10 +54,10 @@ class NavBar extends Component {
                      </li>
 
                      <li id="feed-nav-item" className="nav-item nav-item--feed">
-                     <a id="iconsProfile" href="/profile">
+                     <Link to= {"/profile/:username"} id="iconsProfile">
                      <img className="navImg" src={face}/>
                      <span className="nav-item__title">Profile</span>
-                     </a>
+                     </Link>
                      </li>
                      
                     </ul>

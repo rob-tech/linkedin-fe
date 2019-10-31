@@ -28,16 +28,18 @@ class Main extends Component {
                 <Router>
                     <NavBar />
                     <Switch>
-                        <Route path="/profile/:username"  component={Sections} />
-                        <Route path="/" render={props => (<Login {...props} />)} exact component={Login} />
+                        <Route path="/profile/:username" component={Sections} />
+                        <Route path="/login" render={props => (<Login {...props} />)} exact component={Login} />
+                        <Route path="/feed" component={Feeds} />
                     </Switch>
-                    <Route path="/feed" exact component={Feeds} />
+                
                     <Route path="/chat" exact component={Chat} />
                     <Route path="/register" exact component={Register} />
                 </Router>
             </Provider>
         );
     }
+
 }
 
 export default Main;

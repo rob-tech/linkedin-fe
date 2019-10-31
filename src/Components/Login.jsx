@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Alert } from "reactstrap";
+import Feeds from "./Feeds";
 
 class Login extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class Login extends Component {
     render() {
         return (
             <>
+
                 <div className="row mt-5">
                     <div className="col-md-6 m-auto">
                         <div className="card card-body loginCard">
@@ -42,7 +44,7 @@ class Login extends Component {
 
     login = async () => {
 
-        var res = await fetch("http://localhost:3000/users/login", {
+        var res = await fetch("http://localhost:3000/login", {
             method: "POST",
             body: JSON.stringify({
                 username: this.state.username,
@@ -64,7 +66,7 @@ class Login extends Component {
             })
 
             localStorage.setItem("accessToken", tokenJson.token)
-
+           
             this.props.history.push("/profile/" + tokenJson.user.username)
             
         }
