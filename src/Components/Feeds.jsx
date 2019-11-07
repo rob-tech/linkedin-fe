@@ -54,9 +54,7 @@ class Feeds extends Component {
         });
 
         try {
-            userText = {
-                userText: this.state.userText
-            }
+    
 
             var response = await this.props.postFeedThunk(this.state.userText)
             if (response === null) {
@@ -81,7 +79,7 @@ class Feeds extends Component {
         console.log(this.state.text)
         return (
             <>
-                {this.state.user &&  (
+                {this.state.user && (
                     <>
                         <div key={this.state.user._id}>
                             <Container fluid className="feedCont">
@@ -107,9 +105,9 @@ class Feeds extends Component {
                                             <hr style={{ backgroundColor: "#f2f2f2", height: 0.2 }} />
                                         </section>
                                     </Col>
-                                 
+
                                     <Col className="col-sm-10 col-12">
-                                       
+
                                         <section className="feedCard">
                                             <Row id="feedRow2" className="col-3 col-sm-12 col-md-12">
                                                 <Col id="writeInst" className="col-sm-4 "><Link id="feedLink" onClick={() => this.toggleModal("defaultModal")}><i className="fa fa-pencil-square fa-lg" aria-hidden="true">   Start a post</i> </Link></Col>
@@ -133,9 +131,7 @@ class Feeds extends Component {
                                                         </button>
                                                     </div>
                                                     <div className="modal-body">
-
                                                         <input type="text" value={this.state.userText} onChange={(val) => this.setState({ userText: val.currentTarget.value })} />
-
                                                     </div>
                                                     <div className="modal-footer">
                                                         <Button color="primary"
@@ -163,27 +159,27 @@ class Feeds extends Component {
                                             <hr id="feedHr" />
                                         </section>
                                         <Scrollbars style={{ height: 500 }}>
-                                     
-                                        {this.state.feeds && this.state.feeds.map(feeds => {
-                                            return (
-                                                <div key={feeds._id}>
-                                                    <section className="feedCard2">
-                                                        <Row className="col-sm-12" id="experienceRow" >
-                                                            <Col sm="12" className="expCol">
-                                                                <h6 className="expHeaders"><b>{feeds.username}</b></h6>
-                                                            </Col>
-                                                            <Col sm="12" >
-                                                                <h6 className="expHeaders"><b>{feeds.text}</b></h6>
-                                                            </Col>
-                                                        </Row>
-                                                    </section>
-                                                </div>
-                                            )
-                                        })}
-                                 
-                                    </Scrollbars>
+
+                                            {this.state.feeds && this.state.feeds.map(feeds => {
+                                                return (
+                                                    <div key={feeds._id}>
+                                                        <section className="feedCard2">
+                                                            <Row className="col-sm-12" id="experienceRow" >
+                                                                <Col sm="12" className="expCol">
+                                                                    <h6 className="expHeaders"><b>{feeds.username}</b></h6>
+                                                                </Col>
+                                                                <Col sm="12" >
+                                                                    <h6 className="expHeaders"><b>{feeds.text}</b></h6>
+                                                                </Col>
+                                                            </Row>
+                                                        </section>
+                                                    </div>
+                                                )
+                                            })}
+
+                                        </Scrollbars>
                                     </Col>
-                                
+
                                 </Row>
                             </Container>
                         </div>
@@ -196,7 +192,7 @@ class Feeds extends Component {
         );
     }
     componentDidMount = async () => {
-       var token = this.props.token
+        var token = this.props.token
         // await this.props.userThunk()
         // await this.props.userFeedThunk()
         await this.getProfile()
@@ -218,12 +214,12 @@ class Feeds extends Component {
             })
             if (res.ok) {
                 var posts = await res.json();
-            
-            this.setState({
-                feeds: posts
-            })
 
-        }
+                this.setState({
+                    feeds: posts
+                })
+
+            }
         }
     }
 
@@ -241,12 +237,12 @@ class Feeds extends Component {
             })
             if (res.ok) {
                 var profile = await res.json();
-            
-            this.setState({
-                user: profile
-            })
 
-        }
+                this.setState({
+                    user: profile
+                })
+
+            }
         }
     }
 

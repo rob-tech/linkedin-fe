@@ -89,21 +89,21 @@ export const getFeeds = () => {
 
 export const postFeeds = (message) => {
     return async (dispatch, getState) => {
-        // var headers = new Headers({
-        //     "Authorization": 'Basic dXNlcjc6M1VVNWRZRnZlblJ1UlA3RQ==',
-        //     "Content-Type": "application/json"
-        // });
         var token = localStorage.getItem("accessToken");
+        var headers = new Headers({
+            "Authorization": 'Bearer ' + token,
+            "Content-Type": "application/json"
+        });
+ 
         if(token){
         var response = await fetch("http://localhost:3000/feeds ", {
             method: "POST", 
-            // headers: headers, 
+            headers: headers, 
             body: JSON.stringify({text: message})
 
         })
-        var postFeeds = response.ok ? await response.json() :null
-    
-    
+        var postFeeds = response.ok ? await response.json() :null    
+    console.log(postFeeds)
         console.log(postFeeds)
 
         dispatch({
