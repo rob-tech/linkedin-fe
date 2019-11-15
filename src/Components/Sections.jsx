@@ -13,7 +13,7 @@ import {
 import { Link } from "react-router-dom"
 import image from "../Assets/welcome1.jpg"
 import face from "../Assets/face.jpg"
-import Feeds from "../Components/Feeds"
+// import Feeds from "../Components/Feeds"
 import { connect } from "react-redux";
 import { handleProfiles } from "../Actions";
 import { handleExperience } from "../Actions";
@@ -60,7 +60,7 @@ class Sections extends Component {
 
                                     <div className="display-flex">
                                         <Card className="photo text-align-left">
-                                            <img className="cardImage" src={face} />
+                                            <img className="cardImage" src={face} alt = "img" />
                                         </Card>
                                         <div className="flex-1 flex-column display-flex mt3 mb1">
                                             <div className="display-flex justify-flex-end align-items-center">
@@ -92,7 +92,7 @@ class Sections extends Component {
                                         </Col>
                                         <Col sm="6" className="experienceCol" >
                                             <ul>
-                                                <li className="expElement"><img id="expImage" src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.norrislakemarinas.org%2Fwp-content%2Fthemes%2Fnorris%2Fimg%2Flogo_placeholder.png&f=1&nofb=1" height="20px" />
+                                                <li className="expElement"><img id="expImage" src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.norrislakemarinas.org%2Fwp-content%2Fthemes%2Fnorris%2Fimg%2Flogo_placeholder.png&f=1&nofb=1" height="20px" alt="img"/>
                                                     <h6 className="experienceHeaders">Strive School</h6></li>
                                             </ul>
                                         </Col>
@@ -125,7 +125,7 @@ class Sections extends Component {
                             <div key={experience._id}>
                                 <Row className="col-sm-12" id="experienceRow" >
                                     <Col sm="2" className="my-1" >
-                                        <img id="expImageTwo" src={experience.image} />
+                                        <img id="expImageTwo" src={experience.image} alt="img" />
                                     </Col>
                                     <Col sm="2" className="expCol">
                                         <h6 className="expHeaders"><b>{experience.company}</b></h6>
@@ -144,7 +144,7 @@ class Sections extends Component {
 
                         <Row className="col-sm-12" id="experienceRow" >
                             <Col sm="2" className="my-1" >
-                                <img id="expImageTwo" src="http://www.logoground.com/uploads/z4110148Dummy.jpg" />
+                                <img id="expImageTwo" src="http://www.logoground.com/uploads/z4110148Dummy.jpg" alt="img"/>
                             </Col>
                             <Col sm="2" className="expCol">
                                 <h6 className="expHeaders"><b>Strive School</b></h6>
@@ -171,7 +171,7 @@ class Sections extends Component {
             var res = await fetch("http://localhost:3000/users/" + username, {
                 method: "GET",
                 headers: {
-                    "Authorization": "Bearer" + " " + token
+                    "Authorization": "Bearer " + token
                 },
             })
             if (res.ok) {

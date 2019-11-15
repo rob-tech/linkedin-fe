@@ -11,9 +11,9 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import image from "../Assets/welcome1.jpg"
 import face from "../Assets/face.jpg"
 import { connect } from "react-redux";
-import { handleProfiles } from "../Actions";
+// import { handleProfiles } from "../Actions";
 // import {handleAllProfiles } from "../Actions";
-import { getFeeds } from "../Actions";
+// import { getFeeds } from "../Actions";
 import { postFeeds } from "../Actions";
 import { Link } from "react-router-dom"
 
@@ -49,9 +49,7 @@ class Feeds extends Component {
     };
 
     handleSubmit = async userText => {
-        this.setState({
-            userText: userText
-        });
+
 
         try {
     
@@ -61,7 +59,11 @@ class Feeds extends Component {
                 var error = await this.props.errMess()
                 console.log(error)
                 this.props.errMess(error.message)
+                        this.setState({
+            userText: ""
+        });
             }
+ 
         } catch (ex) {
             console.log(ex);
             this.props.errMess(ex.message)
@@ -92,7 +94,7 @@ class Feeds extends Component {
 
                                                 <div className="display-flex">
                                                     <Card className="photo">
-                                                        <img className="feedCardImage" src={face} />
+                                                        <img className="feedCardImage" src={face} alt="img"/>
                                                     </Card>
                                                 </div>
 
@@ -192,7 +194,7 @@ class Feeds extends Component {
         );
     }
     componentDidMount = async () => {
-        var token = this.props.token
+      
         // await this.props.userThunk()
         // await this.props.userFeedThunk()
         await this.getProfile()

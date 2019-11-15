@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert } from "reactstrap";
-import Feeds from "./Feeds";
+// import Feeds from "./Feeds";
 
 class Login extends Component {
     constructor(props) {

@@ -12,7 +12,7 @@ require('dotenv').config()
 
 const server = express();
 
-server.use(cors())
+// server.use(cors())
 server.use(express.json());
 
 server.use("/users", userRouter)

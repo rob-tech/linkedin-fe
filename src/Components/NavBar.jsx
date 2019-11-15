@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import image from "../Assets/download.png"
 import face from "../Assets/face.jpg"
 import { Link } from "react-router-dom"
-import Sections from "./Sections"
+// import Sections from "./Sections"
 
 class NavBar extends Component {
     state = {}
@@ -12,7 +12,7 @@ class NavBar extends Component {
                 <div id="bodyDiv" className="nav-main__content full-height display-flex align-items-center">
                     <div id="inbugDiv" className="nav-main__inbug-container">
                         <div id="inbug-nav-item" className="nav-item--inbug">
-                            <img src={image} id="linkedinIcon" height="30px"/>
+                            <img src={image} id="linkedinIcon" height="30px" alt="img"/>
                             <input className="search-global-typeahead__input" placeholder=" search" role="combobox" aria-expanded="false" aria-owns aria-label="search" type="text"/>
                    
                         </div>
@@ -27,14 +27,14 @@ class NavBar extends Component {
                      </li>
 
                      <li id="feed-nav-item" className="nav-item nav-item--feed">
-                     <a id="iconsNetwork" href="#">
+                     <a id="iconsNetwork" href="/">
                      <span> <i className="fa fa-users" aria-hidden="true"></i></span>
                      <span className="nav-item__title">My Network</span>
                      </a>
                      </li>
 
                      <li id="feed-nav-item" className="nav-item nav-item--feed">
-                     <a id="iconsJobs" href="#">
+                     <a id="iconsJobs" href="/">
                      <span><i className="fa fa-briefcase" aria-hidden="true"></i></span>
                      <span className="nav-item__title">Jobs</span>
                      </a>
@@ -48,7 +48,7 @@ class NavBar extends Component {
                      </li>
 
                      <li id="feed-nav-item" className="nav-item nav-item--feed">
-                     <a id="iconsNotifications" href="#">
+                     <a id="iconsNotifications" href="/">
                      <span><i className="fa fa-bell" aria-hidden="true"></i></span>
                      <span className="nav-item__title">Notifications</span>
                      </a>
@@ -56,7 +56,7 @@ class NavBar extends Component {
 
                      <li id="feed-nav-item" className="nav-item nav-item--feed">
                      <Link to= {"/profile/" + this.props.username} id="iconsProfile">
-                     <img className="navImg" src={face}/>
+                     <img className="navImg" src={face} alt="img"/>
                      <span className="nav-item__title">Profile</span>
                      </Link>
                      </li>

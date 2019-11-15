@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import io from "socket.io-client";
 import { Col, Row, Container, Button} from "reactstrap";
 import { Link } from "react-router-dom"
-import { connect } from "react-redux";
-import { handleProfiles } from "../Actions";
+// import { connect } from "react-redux";
+// import { handleProfiles } from "../Actions";
 
-const mapStateToProps = state => state;
+// const mapStateToProps = state => state;
 
-const mapDispatchToProps = dispatch => ({
-    userThunk: () => dispatch(handleProfiles()),
-});
+// const mapDispatchToProps = dispatch => ({
+//     userThunk: () => dispatch(handleProfiles()),
+// });
 
 class Chat extends Component {
   socket = null;
@@ -25,12 +25,18 @@ class Chat extends Component {
   }
 
   componentDidMount = async () => {
-   await this.props.userThunk()
-    const connOpts = {
-      transports: ["websocket"]
-    };
+  //  await this.props.userThunk()
+  var connOpt = {
+    "force new connection": true,
+    "reconnectionAttempts": "Infinity",
+    "timeout": 10000,
+    "transports": ["websocket"]
+}
+    // const connOpts = {
+    //   transports: ["websocket"]
+    // };
 
-    this.socket = io("https://striveschool.herokuapp.com/", connOpts);
+    this.socket = io("http://localhost:3000", connOpt);
 
     this.socket.on("bmsg", msg => {
       this.setState(
@@ -59,6 +65,13 @@ class Chat extends Component {
     this.setState({
       message: ""
     });
+
+    // await this.socket.on("message", {
+    //   message: this.state.messages
+  
+    // })
+  
+   
   };
 
   toggleModal = () => {
@@ -74,7 +87,7 @@ class Chat extends Component {
               <section className="msgLeftSect">
                 <ul>
                   <li><h1 className="t-19">Messaging</h1>
-               <Link id="addLink"><i class="fa fa-user-plus" aria-hidden="true"></i></Link></li>
+               <Link id="addLink"><i className="fa fa-user-plus" aria-hidden="true"></i></Link></li>
                 </ul>
                 <hr id= "msgHr" style={{ backgroundColor: "#f2f2f2", height: 0.2 }} />
   
@@ -136,4 +149,5 @@ class Chat extends Component {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Chat);
+export default Chat;
+// export default connect(mapStateToProps, mapDispatchToProps)(Chat);
